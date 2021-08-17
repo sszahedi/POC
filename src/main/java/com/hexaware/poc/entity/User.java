@@ -1,15 +1,17 @@
 package com.hexaware.poc.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -17,11 +19,11 @@ public class User {
     private Integer id;
 
     @Column(name = "first_name")
-    @NonNull
+    @NotBlank(message = "firstName must not be empty")
     private String firstName;
 
     @Column(name = "last_name")
-    @NonNull
+    @NotBlank(message = "lastName must not be empty")
     private String lastName;
 
     public User(
