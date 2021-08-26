@@ -1,8 +1,9 @@
-package com.hexaware.poc.service;
+package com.ntpoc.service;
 
-import com.hexaware.poc.dao.UserDao;
-import com.hexaware.poc.entity.User;
-import com.hexaware.poc.exception.NotFoundException;
+import com.ntpoc.dao.UserDao;
+import com.ntpoc.entity.User;
+import com.ntpoc.entity.UserRequest;
+import com.ntpoc.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,16 @@ public class UserService {
         return userDao.findById(userId).orElseThrow(
                 () -> new NotFoundException(
                         "user with id " + userId + " not found"));
+    }
+
+    public User updateOne(Integer userId, UserRequest request) {
+        log.info("updateOne : UserService");
+        User user = findOne(userId);
+
+        user.setAddress(request.getAddress());
+        user.setEmail(request.getEmail());
+        user.setPhoneNumber(request.getPhoneNumber());
+
+        return userDao.save(user);
     }
 }

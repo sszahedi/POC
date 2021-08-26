@@ -1,9 +1,9 @@
-package com.hexaware.poc.dao;
+package com.ntpoc.dao;
 
-import com.hexaware.poc.entity.Job;
+import com.ntpoc.entity.Balance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JobDao extends JpaRepository<Job, Integer> {
+public interface BalanceDao extends JpaRepository<Balance, Integer> {
 }

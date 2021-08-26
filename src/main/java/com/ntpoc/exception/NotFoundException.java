@@ -1,4 +1,4 @@
-package com.hexaware.poc.exception;
+package com.ntpoc.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

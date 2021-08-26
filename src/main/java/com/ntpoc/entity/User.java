@@ -1,10 +1,11 @@
-package com.hexaware.poc.entity;
+package com.ntpoc.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -26,11 +27,29 @@ public class User {
     @NotBlank(message = "lastName must not be empty")
     private String lastName;
 
+    @Column(name = "address")
+    @NotBlank(message = "address must not be empty")
+    private String address;
+
+    @Column(name = "phone_number")
+    @NotBlank(message = "phone number must not be empty")
+    private Long phoneNumber;
+
+    @Column(name = "email")
+    @Email
+    @NotBlank
+    private String email;
     public User(
             String firstName,
-            String lastName
+            String lastName,
+            String address,
+            Long phoneNumber,
+            String email
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 }

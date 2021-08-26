@@ -1,4 +1,4 @@
-package com.hexaware.poc.exception;
+package com.ntpoc.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
