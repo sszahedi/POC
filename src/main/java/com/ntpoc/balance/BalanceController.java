@@ -1,7 +1,5 @@
-package com.ntpoc.controller;
+package com.ntpoc.balance;
 
-import com.ntpoc.entity.Balance;
-import com.ntpoc.service.BalanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

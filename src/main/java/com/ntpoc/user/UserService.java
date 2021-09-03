@@ -1,8 +1,5 @@
-package com.ntpoc.service;
+package com.ntpoc.user;
 
-import com.ntpoc.dao.UserDao;
-import com.ntpoc.entity.User;
-import com.ntpoc.entity.UserRequest;
 import com.ntpoc.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +11,10 @@ import java.util.List;
 @Slf4j
 public class UserService {
 
-    private final UserDao userDao;
+    private final UserRepository userDao;
 
     @Autowired
-    public UserService(UserDao userDao) {
+    public UserService(UserRepository userDao) {
         this.userDao = userDao;
     }
 

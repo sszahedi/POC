@@ -1,7 +1,5 @@
-package com.ntpoc.service;
+package com.ntpoc.account;
 
-import com.ntpoc.dao.AccountDao;
-import com.ntpoc.entity.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +10,10 @@ import java.util.List;
 @Slf4j
 public class AccountService {
 
-    private final AccountDao accountDao;
+    private final AccountRepository accountDao;
 
     @Autowired
-    public AccountService(AccountDao accountDao) {
+    public AccountService(AccountRepository accountDao) {
         this.accountDao = accountDao;
     }
 

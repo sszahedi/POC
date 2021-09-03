@@ -1,9 +1,8 @@
-package com.ntpoc.dao;
+package com.ntpoc.balance;
 
-import com.ntpoc.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AccountDao extends JpaRepository<Account, Integer> {
+public interface BalanceRepository extends JpaRepository<Balance, Integer> {
 }

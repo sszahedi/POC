@@ -1,7 +1,5 @@
-package com.ntpoc.service;
+package com.ntpoc.balance;
 
-import com.ntpoc.dao.BalanceDao;
-import com.ntpoc.entity.Balance;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +10,10 @@ import java.util.List;
 @Slf4j
 public class BalanceService {
 
-    private final BalanceDao balanceDao;
+    private final BalanceRepository balanceDao;
 
     @Autowired
-    public BalanceService(BalanceDao balanceDao) {
+    public BalanceService(BalanceRepository balanceDao) {
         this.balanceDao = balanceDao;
     }
 

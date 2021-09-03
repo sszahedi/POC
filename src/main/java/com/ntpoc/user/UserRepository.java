@@ -1,9 +1,8 @@
-package com.ntpoc.dao;
+package com.ntpoc.user;
 
-import com.ntpoc.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 }

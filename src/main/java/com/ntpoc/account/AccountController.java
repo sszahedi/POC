@@ -1,9 +1,6 @@
-package com.ntpoc.controller;
+package com.ntpoc.account;
 
-import com.ntpoc.entity.Account;
-import com.ntpoc.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

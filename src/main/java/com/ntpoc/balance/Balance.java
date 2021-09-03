@@ -1,4 +1,4 @@
-package com.ntpoc.entity;
+package com.ntpoc.balance;
 
 import lombok.Data;
 

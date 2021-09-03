@@ -1,8 +1,5 @@
-package com.ntpoc.controller;
+package com.ntpoc.user;
 
-import com.ntpoc.entity.User;
-import com.ntpoc.entity.UserRequest;
-import com.ntpoc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
