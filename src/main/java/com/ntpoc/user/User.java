@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -32,12 +33,12 @@ public class User {
     private String address;
 
     @Column(name = "phone_number")
-    @NotBlank(message = "phone number must not be empty")
+    @NotNull(message = "phone number must not be empty")
     private Long phoneNumber;
 
     @Column(name = "email")
     @Email
-    @NotBlank
+    @NotNull(message = "email must not be empty")
     private String email;
     public User(
             String firstName,

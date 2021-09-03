@@ -1,5 +1,6 @@
 package com.ntpoc.balance;
 
+import com.ntpoc.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,20 +11,22 @@ import java.util.List;
 @Slf4j
 public class BalanceService {
 
-    private final BalanceRepository balanceDao;
+    private final BalanceRepository balanceRepository;
 
     @Autowired
-    public BalanceService(BalanceRepository balanceDao) {
-        this.balanceDao = balanceDao;
+    public BalanceService(BalanceRepository balanceRepository) {
+        this.balanceRepository = balanceRepository;
     }
 
     public List<Balance> findAll() {
         log.info("findAll : BalanceService");
-        return balanceDao.findAll();
+        return balanceRepository.findAll();
     }
 
     public Balance findOne(Integer id) {
         log.info("findOne : BalanceService");
-        return balanceDao.findById(id).orElseThrow();
+        return balanceRepository.findById(id).orElseThrow(() -> new NotFoundException(
+                "balance with id " + id + " not found"
+        ));
     }
 }
