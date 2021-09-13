@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,7 +54,7 @@ class UserControllerTest {
                 2222222222L,
                 "jane@test.com"
         );
-        userRepository.saveAll(List.of(userOne, userTwo));
+        userRepository.saveAll(Arrays.asList(userOne, userTwo));
 
         MvcResult mvcResult = mockMvc.perform(get("/ntpoc/user/details"))
                 .andExpect(status().isOk())
@@ -65,12 +66,12 @@ class UserControllerTest {
 
         List<User> users = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<List<User>>() {}
         );
 
         assertThat(users)
                 .hasSize(2)
-                .isEqualTo(List.of(userOne, userTwo));
+                .isEqualTo(Arrays.asList(userOne, userTwo));
     }
 
     @Test
@@ -96,7 +97,7 @@ class UserControllerTest {
 
         User result = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<User>() {}
         );
 
         assertThat(result)

@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,7 +40,7 @@ class BalanceControllerTest {
     void canGetAllBalances() throws Exception {
         Balance balanceOne = new Balance(1, 111111, new BigDecimal("100.00"), LocalDateTime.now());
         Balance balanceTwo = new Balance(2, 222222, new BigDecimal("200.00"), LocalDateTime.now());
-        balanceRepository.saveAll(List.of(balanceOne, balanceTwo));
+        balanceRepository.saveAll(Arrays.asList(balanceOne, balanceTwo));
 
         MvcResult getBalancesResult = mockMvc.perform(get("/ntpoc/balances")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -52,13 +53,13 @@ class BalanceControllerTest {
 
         List<Balance> balances = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<List<Balance>>() {}
         );
 
         assertThat(balances)
                 .hasSize(2)
                 .usingElementComparatorIgnoringFields("balanceTimestamp")
-                .isEqualTo(List.of(balanceOne, balanceTwo));
+                .isEqualTo(Arrays.asList(balanceOne, balanceTwo));
     }
 
     @Test
@@ -79,7 +80,7 @@ class BalanceControllerTest {
 
         Balance result = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<Balance>() {}
         );
 
         assertThat(result).usingRecursiveComparison()

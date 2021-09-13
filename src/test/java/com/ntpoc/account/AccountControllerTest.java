@@ -11,6 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +38,7 @@ class AccountControllerTest {
     void canGetAllAccounts() throws Exception {
         Account accountOne = new Account(111111, "Checking", 10000L);
         Account accountTwo = new Account(222222, "Savings", 10000L);
-        accountRepository.saveAll(List.of(accountOne, accountTwo));
+        accountRepository.saveAll(Arrays.asList(accountOne, accountTwo));
 
         MvcResult getAccountsResult = mockMvc.perform(get("/ntpoc/accounts"))
                 .andExpect(status().isOk())
@@ -49,12 +50,12 @@ class AccountControllerTest {
 
         List<Account> accounts = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<List<Account>>() {}
         );
 
         assertThat(accounts)
                 .hasSize(2)
-                .isEqualTo(List.of(accountOne, accountTwo));
+                .isEqualTo(Arrays.asList(accountOne, accountTwo));
     }
 
     @Test
@@ -74,7 +75,7 @@ class AccountControllerTest {
 
         Account result = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<>() {}
+                new TypeReference<Account>() {}
         );
 
         assertThat(result)
