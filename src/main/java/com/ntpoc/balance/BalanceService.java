@@ -18,9 +18,9 @@ public class BalanceService {
         this.balanceRepository = balanceRepository;
     }
 
-    public List<Balance> findAll() {
+    public BalanceResponse findAll() {
         log.info("findAll : BalanceService");
-        return balanceRepository.findAll();
+        return new BalanceResponse(balanceRepository.findAll());
     }
 
     public Balance findOne(Integer id) {

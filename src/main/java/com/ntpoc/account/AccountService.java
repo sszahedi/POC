@@ -18,9 +18,9 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public List<Account> findAll() {
+    public AccountResponse findAll() {
         log.info("findAll : AccountService");
-        return accountRepository.findAll();
+        return new AccountResponse(accountRepository.findAll());
     }
 
     public Account findOne(Integer accountNumber) {

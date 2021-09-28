@@ -17,9 +17,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> findAll() {
+    public UserResponse findAll() {
         log.info("findAll : UserService");
-        return userRepository.findAll();
+        return new UserResponse(userRepository.findAll());
     }
 
     public User findOne(Integer userId) {

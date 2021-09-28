@@ -20,7 +20,7 @@ public class AccountController {
     AccountService accountService;
 
     @GetMapping()
-    public ResponseEntity<List<Account>> getAll() {
+    public ResponseEntity<AccountResponse> getAll() {
         log.info("getAll : AccountController");
         return new ResponseEntity<>(accountService.findAll(), HttpStatus.OK);
     }

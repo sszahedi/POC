@@ -20,7 +20,7 @@ public class BalanceController {
     BalanceService balanceService;
 
     @GetMapping()
-    public ResponseEntity<List<Balance>> getAll() {
+    public ResponseEntity<BalanceResponse> getAll() {
         log.info("getAll : BalanceController");
         return new ResponseEntity<>(balanceService.findAll(), HttpStatus.OK);
     }
