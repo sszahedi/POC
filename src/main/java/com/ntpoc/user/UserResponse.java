@@ -1,11 +1,15 @@
 package com.ntpoc.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponse {
 
-    private final List<User> users;
+    private List<User> users;
 }

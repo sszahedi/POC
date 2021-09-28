@@ -1,11 +1,15 @@
 package com.ntpoc.account;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AccountResponse {
 
-    private final List<Account> accounts;
+    private List<Account> accounts;
 }

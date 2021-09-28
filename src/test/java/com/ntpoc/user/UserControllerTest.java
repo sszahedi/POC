@@ -64,12 +64,12 @@ class UserControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        List<User> users = objectMapper.readValue(
+        UserResponse users = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<List<User>>() {}
+                new TypeReference<UserResponse>() {}
         );
 
-        assertThat(users)
+        assertThat(users.getUsers())
                 .hasSize(2)
                 .isEqualTo(Arrays.asList(userOne, userTwo));
     }

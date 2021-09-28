@@ -48,12 +48,12 @@ class AccountControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        List<Account> accounts = objectMapper.readValue(
+        AccountResponse accounts = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<List<Account>>() {}
+                new TypeReference<AccountResponse>() {}
         );
 
-        assertThat(accounts)
+        assertThat(accounts.getAccounts())
                 .hasSize(2)
                 .isEqualTo(Arrays.asList(accountOne, accountTwo));
     }

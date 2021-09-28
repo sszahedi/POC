@@ -51,12 +51,12 @@ class BalanceControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        List<Balance> balances = objectMapper.readValue(
+        BalanceResponse balances = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<List<Balance>>() {}
+                new TypeReference<BalanceResponse>() {}
         );
 
-        assertThat(balances)
+        assertThat(balances.getBalances())
                 .hasSize(2)
                 .usingElementComparatorIgnoringFields("balanceTimestamp")
                 .isEqualTo(Arrays.asList(balanceOne, balanceTwo));
