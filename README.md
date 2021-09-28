@@ -4,7 +4,11 @@ Port 8080
 
 Endpoints:
 - GET:
-  - /api/users
-  - /api/users/:userId
-  - /api/jobs
-  - /api/jobs/:jobId
+  - /ntpoc/accounts
+  - /ntpoc/accounts/:accountNumber
+  - /ntpoc/balances
+  - /ntpoc/balances/:id
+  - /ntpoc/user/details
+  - /ntpoc/user/details/:id
+- PATCH:
+  - /ntpoc/user/details/:id
