@@ -45,7 +45,8 @@ class BalanceServiceTest {
                 balanceId,
                 111111,
                 new BigDecimal("100.00"),
-                LocalDateTime.now());
+                LocalDateTime.now(),
+                "balanceOne");
         given(balanceRepository.findById(balanceId)).willReturn(Optional.of(balance));
 
         // when

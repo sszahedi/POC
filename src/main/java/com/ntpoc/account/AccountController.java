@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ntpoc/accounts")
@@ -20,7 +20,7 @@ public class AccountController {
     AccountService accountService;
 
     @GetMapping()
-    public ResponseEntity<AccountResponse> getAll() {
+    public ResponseEntity<Map<String, Account>> getAll() {
         log.info("getAll : AccountController");
         return new ResponseEntity<>(accountService.findAll(), HttpStatus.OK);
     }

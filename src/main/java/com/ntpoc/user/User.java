@@ -1,5 +1,6 @@
 package com.ntpoc.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,11 @@ public class User {
     @Email
     @NotNull(message = "email must not be empty")
     private String email;
+
+    @Column(name = "label")
+    @JsonIgnore
+    private String label;
+
     public User(
             String firstName,
             String lastName,

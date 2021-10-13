@@ -39,7 +39,7 @@ class AccountServiceTest {
     void canGetOneAccount() {
         // given
         Integer accountNumber = 111111;
-        Account account = new Account(accountNumber, "Checking", 10000L);
+        Account account = new Account(accountNumber, "Checking", 10000L, "accountOne");
         given(accountRepository.findById(accountNumber)).willReturn(Optional.of(account));
 
         // when

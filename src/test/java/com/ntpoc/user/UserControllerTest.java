@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -44,7 +44,8 @@ class UserControllerTest {
                 "Smith",
                 "1 Address",
                 5555555555L,
-                "johnsmith@test.com"
+                "johnsmith@test.com",
+                "userOne"
         );
         User userTwo = new User(
                 2,
@@ -52,7 +53,8 @@ class UserControllerTest {
                 "Johnson",
                 "2 Address",
                 2222222222L,
-                "jane@test.com"
+                "jane@test.com",
+                "userTwo"
         );
         userRepository.saveAll(Arrays.asList(userOne, userTwo));
 
@@ -64,14 +66,15 @@ class UserControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        UserResponse users = objectMapper.readValue(
+        Map<String, User> users = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<UserResponse>() {}
+                new TypeReference<Map<String, User>>() {}
         );
 
-        assertThat(users.getUsers())
+        assertThat(users.values())
                 .hasSize(2)
-                .isEqualTo(Arrays.asList(userOne, userTwo));
+                .usingElementComparatorIgnoringFields("label")
+                .contains(userOne, userTwo);
     }
 
     @Test
@@ -83,7 +86,8 @@ class UserControllerTest {
                 "Smith",
                 "1 Address",
                 5555555555L,
-                "johnsmith@test.com"
+                "johnsmith@test.com",
+                null
         );
         userRepository.save(userOne);
 
@@ -129,7 +133,8 @@ class UserControllerTest {
                 "Smith",
                 "Address",
                 5555555555L,
-                "johnsmith@test.com"
+                "johnsmith@test.com",
+                "userOne"
         );
         UserRequest request = new UserRequest(
                 "Updated address",
@@ -142,7 +147,8 @@ class UserControllerTest {
                 "Smith",
                 "Updated address",
                 1111111111L,
-                "updatedEmail@test.com"
+                "updatedEmail@test.com",
+                "userOne"
         );
 
         userRepository.save(user);
@@ -154,6 +160,6 @@ class UserControllerTest {
 
         User result = userRepository.findById(1).get();
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).isEqualToIgnoringGivenFields(expected, "label");
     }
 }

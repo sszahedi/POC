@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -38,8 +38,8 @@ class BalanceControllerTest {
 
     @Test
     void canGetAllBalances() throws Exception {
-        Balance balanceOne = new Balance(1, 111111, new BigDecimal("100.00"), LocalDateTime.now());
-        Balance balanceTwo = new Balance(2, 222222, new BigDecimal("200.00"), LocalDateTime.now());
+        Balance balanceOne = new Balance(1, 111111, new BigDecimal("100.00"), LocalDateTime.now(), "balanceOne");
+        Balance balanceTwo = new Balance(2, 222222, new BigDecimal("200.00"), LocalDateTime.now(), "balanceTwo");
         balanceRepository.saveAll(Arrays.asList(balanceOne, balanceTwo));
 
         MvcResult getBalancesResult = mockMvc.perform(get("/ntpoc/balances")
@@ -51,22 +51,22 @@ class BalanceControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        BalanceResponse balances = objectMapper.readValue(
+        Map<String, Balance> balances = objectMapper.readValue(
                 contentAsString,
-                new TypeReference<BalanceResponse>() {}
+                new TypeReference<Map<String, Balance>>() {}
         );
 
-        assertThat(balances.getBalances())
+        assertThat(balances.values())
                 .hasSize(2)
-                .usingElementComparatorIgnoringFields("balanceTimestamp")
-                .isEqualTo(Arrays.asList(balanceOne, balanceTwo));
+                .usingElementComparatorIgnoringFields("balanceTimestamp", "label")
+                .contains(balanceOne, balanceTwo);
     }
 
     @Test
     void canGetOneBalance() throws Exception {
 
         int balanceNumber = 1;
-        Balance balanceOne = new Balance(1, 111111, new BigDecimal("100.00"), LocalDateTime.now());
+        Balance balanceOne = new Balance(1, 111111, new BigDecimal("100.00"), LocalDateTime.now(), null);
         balanceRepository.save(balanceOne);
 
         MvcResult getBalanceResult = mockMvc.perform(get("/ntpoc/balances/" + balanceNumber)

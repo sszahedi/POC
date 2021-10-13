@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ntpoc/user/details")
@@ -17,7 +17,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping()
-    public ResponseEntity<UserResponse> getAll() {
+    public ResponseEntity<Map<String, User>> getAll() {
         log.info("getAll : UserController");
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }

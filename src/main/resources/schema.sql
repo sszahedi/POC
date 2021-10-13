@@ -8,18 +8,21 @@ CREATE TABLE users (
     last_name VARCHAR(45) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone_number BIGINT NOT NULL,
-    email VARCHAR(255) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    label VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE accounts (
     account_number INT PRIMARY KEY,
     description VARCHAR(255) NOT NULL,
-    balance BIGINT NOT NULL
+    balance BIGINT NOT NULL,
+    label VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE balances (
     id INT AUTO_INCREMENT PRIMARY KEY,
     account_number INT NOT NULL,
     account_balance DECIMAL(18,2) NOT NULL,
-    balance_timestamp TIMESTAMP NOT NULL
+    balance_timestamp TIMESTAMP NOT NULL,
+    label VARCHAR(45) NOT NULL
 );

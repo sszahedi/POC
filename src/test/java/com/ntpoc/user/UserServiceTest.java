@@ -45,7 +45,8 @@ class UserServiceTest {
                 "Smith",
                 "Address",
                 5555555555L,
-                "johnsmith@test.com"
+                "johnsmith@test.com",
+                "userOne"
         );
         given(userRepository.findById(userId)).willReturn(Optional.of(user));
 
@@ -79,7 +80,8 @@ class UserServiceTest {
                 "Smith",
                 "Address",
                 5555555555L,
-                "johnsmith@test.com"
+                "johnsmith@test.com",
+                "userOne"
         );
         UserRequest request = new UserRequest(
                 "Updated address",
@@ -92,7 +94,8 @@ class UserServiceTest {
                 "Smith",
                 "Updated address",
                 1111111111L,
-                "updatedEmail@test.com"
+                "updatedEmail@test.com",
+                "userOne"
         );
         given(userRepository.findById(userId)).willReturn(Optional.of(user));
 

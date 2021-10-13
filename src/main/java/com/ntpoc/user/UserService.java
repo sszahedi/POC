@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -17,9 +20,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserResponse findAll() {
+    public Map<String, User> findAll() {
         log.info("findAll : UserService");
-        return new UserResponse(userRepository.findAll());
+        return ListToMap(userRepository.findAll());
     }
 
     public User findOne(Integer userId) {
@@ -50,5 +53,11 @@ public class UserService {
         }
 
         return user;
+    }
+
+    private Map<String, User> ListToMap(List<User> list) {
+        Map<String, User> map = list.stream()
+                .collect(Collectors.toMap(User::getLabel, Function.identity()));
+        return map;
     }
 }
